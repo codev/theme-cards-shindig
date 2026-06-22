@@ -32,10 +32,10 @@
 	    <feBlend mode="color" in="componentTransfer" in2="SourceGraphic" result="blend"></feBlend>
       </filter>
     </defs></svg>
-    <div class="invite-section">
+
 
 {{#if album.home}}
-
+  <div class="invite-section">
   <div class="background-image"></div>
   <div class="invite-content">
     <div class="invite-greeting" aria-hidden="true" style="visibility: hidden;">
@@ -89,6 +89,8 @@
 
     </div>
   </div>
+{{else}}
+  <div class="invite-section no-top">
 {{/if}}
 
     {{> content}}

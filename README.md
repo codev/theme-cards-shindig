@@ -1,4 +1,6 @@
-# @thumbsup/theme-cards
+# @thumbsup/theme-cards-shindig
+
+Based on @thumbsup/theme-cards and adapted for Marc and Jordan's wedding.
 
 [![NPM](https://img.shields.io/npm/v/@thumbsup/theme-cards.svg?style=flat)](https://www.npmjs.com/package/@thumbsup/theme-cards)
 [![Travis CI](https://travis-ci.org/thumbsup/theme-cards.svg?branch=master)](https://travis-ci.org/thumbsup/theme-cards)

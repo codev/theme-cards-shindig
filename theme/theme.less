@@ -2,9 +2,9 @@
 // Variables for user customisation
 // -----------------------------------
 
-@body-background: #fff;
-@body-color: #444;
-@header-color: #444;
+@body-background: #000;
+@body-color: #fff;
+@header-color: #fff;
 @nav-border: #ddd;
 
 // -----------------------------------
@@ -69,7 +69,7 @@ a {
 
 header {
   font-size: 1.8em;
-  margin-bottom: 1.1em;
+  margin-bottom: 0;
 }
 
 h1 {
@@ -103,7 +103,7 @@ footer a {
 nav.breadcrumbs {
   border-bottom: 1px solid @nav-border;
   font-size: 1.2em;
-  margin-bottom: 2em;
+  margin-bottom: 0;
   padding: 0em 0em 0.8em 0.1em;
 }
 
@@ -111,19 +111,19 @@ nav.breadcrumbs {
 // Nested albums
 // -----------------------------------
 
-#albums, #media {
-  margin: 0em;
+#albums {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(~"min(300px, 100%)", 1fr));
+  gap: 2em;
+  margin: 0 0 3em;
 }
 
 #albums a {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  display: inline-block;
-  margin-right: 2em;
-  margin-bottom: 3em;
+  display: block;
   position: relative;
   overflow: hidden;
-  width: 300px;
   height: 220px;
   background-size: cover;
   border-radius: 8px;
@@ -151,10 +151,23 @@ nav.breadcrumbs {
 // Photo and video thumbnails
 // -----------------------------------
 
+#media {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.no-top {
+  color: #fff;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
 #media li {
-  float: left;
-  margin-right: 0.4em;
-  margin-bottom: 0.2em;
   position: relative;
   cursor: zoom-in;
 }
