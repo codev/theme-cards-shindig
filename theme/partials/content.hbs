@@ -1,6 +1,5 @@
-
 <div id="container">
-
+  {{#unless album.home}}
   <!--
     Gallery title
   -->
@@ -17,6 +16,7 @@
     {{~/each~}}
     <a class="breadcrumb-item" href="{{relative album.url}}">{{album.title}}</a>
   </nav>
+      {{/unless}}
 
   <!--
     Nested albums, if any

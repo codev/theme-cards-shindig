@@ -5,6 +5,10 @@
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, user-scalable=no" />
       <title>{{gallery.title}} - {{album.title}}</title>
+      <link rel="icon" href="/icon.png" type="image/png">
+      <link rel="icon" href="/icon.svg" type="image/svg+xml">
+      <link rel="apple-touch-icon" href="/icon.png">
+      <link rel="stylesheet" href="https://codev.uk/fonts/open-sans.css">
       <link rel="stylesheet" href="{{relative 'public/lightgallery/css/lightgallery.css'}}" />
       <link rel="stylesheet" href="{{relative 'public/videojs/video-js.min.css'}}" />
       <link rel="stylesheet" href="{{relative 'public/lightgallery/css/lg-exif.min.css'}}" />
@@ -13,9 +17,84 @@
   </head>
 
   <body>
+    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position: absolute;"><defs>
+      <filter id="pink-blue" x="-10%" y="-10%" width="120%" height="120%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+	      <feColorMatrix type="matrix" values="1 0 0 0 0
+                                             1 0 0 0 0
+                                             1 0 0 0 0
+                                             0 0 0 1 0" in="SourceGraphic" result="colormatrix"></feColorMatrix>
+	      <feComponentTransfer in="colormatrix" result="componentTransfer">
+    		  <feFuncR type="table" tableValues="0.44 0.89"></feFuncR>
+		      <feFuncG type="table" tableValues="0.58 0.73"></feFuncG>
+		      <feFuncB type="table" tableValues="0.7 0.73"></feFuncB>
+		      <feFuncA type="table" tableValues="0 1"></feFuncA>
+  	    </feComponentTransfer>
+	    <feBlend mode="color" in="componentTransfer" in2="SourceGraphic" result="blend"></feBlend>
+      </filter>
+    </defs></svg>
+    <div class="invite-section">
+
+{{#if album.home}}
+
+  <div class="background-image"></div>
+  <div class="invite-content">
+    <div class="invite-greeting" aria-hidden="true" style="visibility: hidden;">
+      Dear&nbsp;Guest,
+    </div>
+
+      <div class="invite-names">
+        <p>Marc &amp; Jordan</p>
+      </div>
+
+    <div class="invite-text">
+      <p>Thank you for coming</p>
+    </div>
+
+      <div class="invite-date">
+        <p>Saturday, 9 May 2026</p>
+      </div>
+
+      <div class="invite-venue">
+        <p>The Art Pavilion</p>
+      </div>
+
+      <div class="invite-address">
+        <p>Mile End Park
+<br>London E3 4QY</p>
+      </div>
+
+  </div>
+
+  <div class="scroll-arrow">
+    <a href="#event-details" class="scroll-down-btn">
+      <svg width="24" height="32" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="12" y1="4" x2="12" y2="24" stroke="currentColor" stroke-width="3" stroke-linecap="round"></line>
+        <path d="M7 19L12 24L17 19" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </a>
+  </div>
+</div>
+
+<div class="invite-container">
+  <div class="event-details" id="event-details">
+    <div class="event-content">
+        <div class="trix-content">
+
+  <div>Thank you everyone for throwing us the most incredible celebration of our lives. It was wonderful (and a bit terrifying!) to walk into that room filled with so much love. We had such a special day and we hope you did too.&nbsp;<br><br>
+</div>
+
+<div><br></div>
+<div>Professional photos by the wonderful <a href="https://www.harleyjaffarphotography.com/" target="_blank" rel="noopener noreferrer">Harley Jaffar</a>&nbsp;and the rest are ones you sent us.&nbsp;Apologies if my local open source AI has got your face wrong.</div>
+</div>
+
+    </div>
+  </div>
+{{/if}}
 
     {{> content}}
     {{> video-loader}}
+
+</div>
 
     <!-- jQuery -->
     <script src="{{relative 'public/jquery.min.js'}}"></script>
