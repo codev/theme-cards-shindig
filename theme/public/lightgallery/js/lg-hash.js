@@ -29,7 +29,13 @@
 
         // Change hash value on after each slide transition
         _this.core.$el.on('onAfterSlide.lg.tm', function(event, prevIndex, index) {
-            window.location.hash = 'lg=' + _this.core.s.galleryId + '&slide=' + index;
+            // Use replaceState so browsing slides updates the URL without piling up
+            // history entries (which otherwise force many Back clicks to leave the page).
+            if (history.replaceState) {
+                history.replaceState(null, '', window.location.pathname + window.location.search + '#lg=' + _this.core.s.galleryId + '&slide=' + index);
+            } else {
+                window.location.hash = 'lg=' + _this.core.s.galleryId + '&slide=' + index;
+            }
         });
 
         // Listen hash change and change the slide according to slide value
@@ -50,11 +56,16 @@
     Hash.prototype.destroy = function() {
 
         // Reset to old hash value
-        if (this.oldHash && this.oldHash.indexOf('lg=' + this.core.s.galleryId) < 0) {
-            window.location.hash = this.oldHash;
+        if (history.replaceState) {
+            // Replace (not push) so closing the gallery leaves no extra history entry.
+            if (this.oldHash && this.oldHash.indexOf('lg=' + this.core.s.galleryId) < 0) {
+                history.replaceState(null, '', window.location.pathname + window.location.search + this.oldHash);
+            } else {
+                history.replaceState(null, '', window.location.pathname + window.location.search);
+            }
         } else {
-            if (history.pushState) {
-                history.pushState('', document.title, window.location.pathname + window.location.search);
+            if (this.oldHash && this.oldHash.indexOf('lg=' + this.core.s.galleryId) < 0) {
+                window.location.hash = this.oldHash;
             } else {
                 window.location.hash = '';
             }
